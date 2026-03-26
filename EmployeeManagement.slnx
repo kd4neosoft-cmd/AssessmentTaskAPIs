@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="EmployeeManagement.API/EmployeeManagement.API.csproj" />
+  <Project Path="EmployeeManagement.BLL/EmployeeManagement.BLL.csproj" />
+  <Project Path="EmployeeManagement.Common/EmployeeManagement.Common.csproj" />
+  <Project Path="EmployeeManagement.DAL/EmployeeManagement.DAL.csproj" />
+  <Project Path="EmployeeManagement.Entities/EmployeeManagement.Entities.csproj" />
+</Solution>
