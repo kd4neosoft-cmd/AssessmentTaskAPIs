@@ -12,6 +12,6 @@ namespace EmployeeManagement.Common.Models
         public int PageSize { get; set; } = 10;
         public string? SearchTerm { get; set; }
         public string? SortBy { get; set; } = "Row_Id";
-        public string SortOrder { get; set; } = "ASC"; // ASC or DESC
+        public string SortOrder { get; set; } = "ASC"; 
     }
 }

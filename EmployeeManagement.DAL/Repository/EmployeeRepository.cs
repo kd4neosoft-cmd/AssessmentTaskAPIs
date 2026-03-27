@@ -56,7 +56,6 @@ namespace EmployeeManagement.DAL.Repository
 
         public async Task<int> AddAsync(EmployeeDto entity)
         {
-            // Output parameters
             var employeeCodeParam = new SqlParameter("@EmployeeCode", SqlDbType.VarChar, 8)
             { Direction = ParameterDirection.Output };
             var messageParam = new SqlParameter("@ResultMessage", SqlDbType.NVarChar, 500)
@@ -155,7 +154,6 @@ namespace EmployeeManagement.DAL.Repository
             return true;
         }
 
-        // Location methods
         public async Task<IEnumerable<LocationDto>> GetCountriesAsync()
         {
             return await SqlHelper.QueryAsync(_connectionFactory,
@@ -176,7 +174,6 @@ namespace EmployeeManagement.DAL.Repository
                 "stp_Emp_GetCitiesByState", MapLocation, parameters);
         }
 
-        // Mappers
         private static EmployeeDto MapEmployee(IDataReader reader)
         {
             return new EmployeeDto
@@ -207,7 +204,7 @@ namespace EmployeeManagement.DAL.Repository
             return new LocationDto
             {
                 Row_Id = reader.GetInt32(reader.GetOrdinal("Row_Id")),
-                Name = reader.GetString(reader.GetOrdinal(reader.GetName(1))) // CountryName/StateName/CityName
+                Name = reader.GetString(reader.GetOrdinal(reader.GetName(1))) 
             };
         }
     }

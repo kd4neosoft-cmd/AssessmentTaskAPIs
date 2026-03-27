@@ -15,9 +15,9 @@ namespace EmployeeManagement.BLL.Services
         private readonly IHostEnvironment _env; 
         private const string UploadFolder = "Uploads/Employee";
         private static readonly string[] AllowedExtensions = { ".jpg", ".jpeg", ".png" };
-        private const long MaxFileSize = 200 * 1024; // 200 KB
+        private const long MaxFileSize = 200 * 1024; 
 
-        public FileService(IHostEnvironment env)  // ← Updated constructor
+        public FileService(IHostEnvironment env)  
         {
             _env = env;
         }
@@ -34,7 +34,6 @@ namespace EmployeeManagement.BLL.Services
             if (file.Length > MaxFileSize)
                 return (false, $"File size exceeds {MaxFileSize / 1024} KB limit", null);
 
-            // Create unique filename
             var uniqueName = $"{Guid.NewGuid()}_{SanitizeFileName(Path.GetFileNameWithoutExtension(file.FileName))}{extension}";
 
             var uploadsPath = Path.Combine(_env.ContentRootPath, UploadFolder);
@@ -55,7 +54,6 @@ namespace EmployeeManagement.BLL.Services
 
             try
             {
-                // Use ContentRootPath for consistency
                 var physicalPath = Path.Combine(_env.ContentRootPath, filePath.TrimStart('/'));
 
                 if (File.Exists(physicalPath))
@@ -66,7 +64,6 @@ namespace EmployeeManagement.BLL.Services
             }
             catch (Exception ex)
             {
-                //_logger?.LogWarning(ex, "Failed to delete file: {FilePath}", filePath);
             }
             return false;
         }

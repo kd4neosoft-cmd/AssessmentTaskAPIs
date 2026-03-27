@@ -21,11 +21,9 @@ namespace EmployeeManagement.DAL.Infrastructure
 
         private DbConnectionFactory()
         {
-            // Load from configuration (passed via constructor in real app)
             _connectionString = "Server=localhost;Database=EmployeeDB;Trusted_Connection=True;TrustServerCertificate=True;";
         }
 
-        // For DI - allows connection string injection
         public DbConnectionFactory(string connectionString)
         {
             _connectionString = connectionString;

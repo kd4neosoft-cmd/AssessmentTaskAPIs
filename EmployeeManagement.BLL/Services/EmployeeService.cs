@@ -65,12 +65,10 @@ namespace EmployeeManagement.BLL.Services
         {
             try
             {
-                // Validation
                 var validationResult = ValidateEmployee(request, profileImage, isNew: true);
                 if (!validationResult.Success)
                     return ApiResponse<int>.ErrorResponse(validationResult.Message, 400);
 
-                // Handle file upload
                 string? profileImagePath = null;
                 if (profileImage != null)
                 {
@@ -115,21 +113,17 @@ namespace EmployeeManagement.BLL.Services
         {
             try
             {
-                // Validation
                 var validationResult = ValidateEmployee(request, profileImage, isNew: false, request.Row_Id);
                 if (!validationResult.Success)
                     return ApiResponse<bool>.ErrorResponse(validationResult.Message, 400);
 
-                // Get existing employee to preserve existing image if no new one uploaded
                 var existing = await _repository.GetByIdAsync(request.Row_Id);
                 if (existing == null)
                     return ApiResponse<bool>.ErrorResponse("Employee not found", 404);
 
-                // Handle file upload
                 string? profileImagePath = existing.ProfileImage;
                 if (profileImage != null)
                 {
-                    // Delete old image if exists
                     if (!string.IsNullOrEmpty(existing.ProfileImage))
                         _fileService.DeleteFile(existing.ProfileImage);
 
@@ -242,7 +236,6 @@ namespace EmployeeManagement.BLL.Services
             }
         }
 
-        // Validation Helper
         private (bool Success, string Message) ValidateEmployee(EmployeeCreateRequest request,
             IFormFile? profileImage, bool isNew, int? existingId = null)
         {

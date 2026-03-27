@@ -71,13 +71,11 @@ namespace EmployeeManagement.DAL.Infrastructure
 
             using var reader = await command.ExecuteReaderAsync();
 
-            // First result: TotalCount
             if (await reader.ReadAsync())
             {
                 totalCount = reader.GetInt32(0);
             }
 
-            // Move to next result set: Actual data
             if (await reader.NextResultAsync())
             {
                 while (await reader.ReadAsync())
